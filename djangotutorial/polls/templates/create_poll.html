@@ -22,38 +22,38 @@
 
     <div>
       <label for="image" class="block mb-2 text-base font-medium text-gray-900">Image</label>
-      <input type="file" name="image" id="image" accept="image/*" class="w-full p-3 border border-gray-300 rounded-md file:bg-green-600 file:text-white file:font-medium file:px-4 file:py-2 file:rounded-md" required />
+      <input type="file" name="image" id="image" accept="image/*" class="w-full p-3 border border-gray-300 rounded-md file:bg-green-600 file:text-white file:font-medium file:px-4 file:py-2 file:rounded-md" />
     </div>
 
     <!-- Nouveaux champs réponses -->
-<div id="choices-container">
-  <label class="block mb-2 text-base font-medium text-gray-900">Réponses possibles</label>
-  <input type="text" name="choice1" placeholder="Réponse 1" class="w-full p-3 mb-2 border border-gray-300 rounded-md" required oninput="checkAndAddChoice(this)" />
-  <input type="text" name="choice2" placeholder="Réponse 2" class="w-full p-3 mb-2 border border-gray-300 rounded-md" required oninput="checkAndAddChoice(this)" />
-  <input type="text" name="choice3" placeholder="Réponse 3" class="w-full p-3 border border-gray-300 rounded-md" oninput="checkAndAddChoice(this)" />
-</div>
+    <div id="choices-container">
+      <label class="block mb-2 text-base font-medium text-gray-900">Réponses possibles</label>
+      <input type="text" name="choice" placeholder="Réponse 1" class="w-full p-3 mb-2 border border-gray-300 rounded-md" required oninput="checkAndAddChoice(this)" />
+      <input type="text" name="choice" placeholder="Réponse 2" class="w-full p-3 mb-2 border border-gray-300 rounded-md" required oninput="checkAndAddChoice(this)" />
+      <input type="text" name="choice" placeholder="Réponse 3" class="w-full p-3 border border-gray-300 rounded-md" oninput="checkAndAddChoice(this)" />
+    </div>
 
     <button type="submit" class="w-full px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700">
       Publier le sondage
     </button>
-    <script>
-  function checkAndAddChoice(input) {
-    const container = document.getElementById('choices-container');
-    const inputs = container.querySelectorAll('input[type="text"]');
-    const lastInput = inputs[inputs.length - 1];
 
-    if (input === lastInput && input.value.trim() !== '') {
-      const newIndex = inputs.length + 1;
-      const newInput = document.createElement('input');
-      newInput.type = 'text';
-      newInput.name = 'choice' + newIndex;
-      newInput.placeholder = 'Réponse ' + newIndex;
-      newInput.className = 'w-full p-3 mb-2 border border-gray-300 rounded-md';
-      newInput.setAttribute('oninput', 'checkAndAddChoice(this)');
-      container.appendChild(newInput);
-    }
-  }
-</script>
+    <script>
+      function checkAndAddChoice(input) {
+        const container = document.getElementById('choices-container');
+        const inputs = container.querySelectorAll('input[type="text"][name="choice"]');
+        const lastInput = inputs[inputs.length - 1];
+
+        if (input === lastInput && input.value.trim() !== '') {
+          const newInput = document.createElement('input');
+          newInput.type = 'text';
+          newInput.name = 'choice';
+          newInput.placeholder = 'Réponse ' + (inputs.length + 1);
+          newInput.className = 'w-full p-3 mb-2 border border-gray-300 rounded-md';
+          newInput.setAttribute('oninput', 'checkAndAddChoice(this)');
+          container.appendChild(newInput);
+        }
+      }
+    </script>
   </form>
 </div>
 {% endblock %}

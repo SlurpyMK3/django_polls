@@ -84,11 +84,12 @@ def create_poll(request):
 
     if request.method == "POST":
         question_text = request.POST.get("question_text")
-        choice1 = request.POST.get("choice1")
-        choice2 = request.POST.get("choice2")
-        image = request.FILES.get("image") 
+        choices = request.POST.getlist("choice")  # récupère tous les choix envoyés
+        image = request.FILES.get("image")
 
-        if not question_text or not choice1 or not choice2:
+        # Filtrer les choix vides et garder au moins 2 choix remplis
+        choices = [c for c in choices if c.strip()]
+        if not question_text or len(choices) < 2:
             error_message = "Remplis la question et au moins 2 réponses."
         else:
             question = Question.objects.create(
@@ -96,12 +97,13 @@ def create_poll(request):
                 pub_date=timezone.now(),
                 image=image  
             )
-            Choice.objects.create(question=question, choice_text=choice1)
-            Choice.objects.create(question=question, choice_text=choice2)
+            for choice_text in choices:
+                Choice.objects.create(question=question, choice_text=choice_text)
 
             return redirect('polls:index')
 
     return render(request, "create_poll.html", {"error_message": error_message})
+
 
 
 

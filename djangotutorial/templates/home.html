@@ -79,55 +79,75 @@
   <p class="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
     Merci de participer à nos sondages ! Vous pouvez voter ou voir les résultats.
   </p>
-  <a href="{% url 'polls:index' %}"
-     class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition">
-    Aller aux sondages
-  </a>
+  <div class="inline-block">
+    <a href="{% url 'polls:index' %}"
+       class="block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition mb-4">
+      Aller aux sondages
+    </a>
+    <a href="{% url 'inscription' %}"
+       class="block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium py-3 px-6 rounded-lg shadow-md transition">
+      S'inscrire
+    </a>
+  </div>
 {% else %}
   <h1 class="text-4xl font-extrabold text-green-700 mb-4">Bienvenue sur McSond's 🍔</h1>
   <p class="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
     Participez aux sondages sur vos produits McDonald's préférés et comparez vos goûts à ceux des autres !
-    </p>
-  <a href="{% url 'polls:index' %}"
-     class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition">
-    Participer aux sondages
-  </a>
+  </p>
+  <div class="inline-block">
+    <a href="{% url 'polls:index' %}"
+       class="block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg shadow-md transition mb-4">
+      Participer aux sondages
+    </a>
+    <div class="pt-15 pb-16 px-4 text-center"></div>
+  <div class="inline-block">
+    <a href="{% url 'inscription' %}"
+       class="block bg-green-600 hover:bg-yellow-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition mb-4">
+      S'inscrire
+    </a>
+    </div>
+         <p class="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
+     Inscrivez-vous des maintenant pour créer vos propres sondages !
 {% endif %}
+</div>
 
-    <div class="max-w-4xl mx-auto p-3 space-y-10 mt-15"></div>
   <!-- Cartes de fonctionnalités -->
   <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Carte 1 -->
-    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
-      <div class="flex justify-center mb-4">
-          <!-- vote -->
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-  </svg>
-      </div>
-      <h3 class="text-xl font-semibold text-green-800 mb-2">Vote facile</h3>
-      <p class="text-gray-600">Donnez votre avis en quelques clics sur nos produits McDo !</p>
-    </div>
+<!-- Carte 1 -->
+<a href="/sondage" class="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+  <div class="flex justify-center mb-4">
+    <!-- vote -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+  <h3 class="text-xl font-semibold text-green-800 mb-2">Vote facile</h3>
+  <p class="text-gray-600">Donnez votre avis en quelques clics sur nos produits McDo !</p>
+</a>
 
-    <!-- Carte 2 -->
-    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
-      <div class="flex justify-center mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h10m-6 4h6m4-4v6a2 2 0 002 2h2" />
-</svg>
+<!-- Carte 2 -->
+<a href="/resultat" class="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+  <div class="flex justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h10m-6 4h6m4-4v6a2 2 0 002 2h2" />
+    </svg>
+  </div>
+  <h3 class="text-xl font-semibold text-green-800 mb-2">Résultats en temps réel</h3>
+  <p class="text-gray-600">Découvrez ce que les autres préfèrent immédiatement.</p>
+</a>
 
-      </div>
-      <h3 class="text-xl font-semibold text-green-800 mb-2">Résultats en temps réel</h3>
-      <p class="text-gray-600">Découvrez ce que les autres préfèrent immédiatement.</p>
-    </div>
+<!-- Carte 3 -->
+<a href="/contact" class="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+  <div class="flex justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3-.468L3 21l1.568-3.725A8.996 8.996 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+  </div>
+  <h3 class="text-xl font-semibold text-green-800 mb-2">Exprimez-vous</h3>
+  <p class="text-gray-600">Votre opinion compte, même sur la meilleure sauce du Big Mac !</p>
+</a>
 
-    <!-- Carte 3 -->
-    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
-      <div class="flex justify-center mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3-.468L3 21l1.568-3.725A8.996 8.996 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-</svg>
-
+<div class="pt-5 pb-16 px-4 text-center"></div>
       </div>
       <h3 class="text-xl font-semibold text-green-800 mb-2">Exprimez-vous</h3>
       <p class="text-gray-600">Votre opinion compte, même sur la meilleure sauce du Big Mac !</p>

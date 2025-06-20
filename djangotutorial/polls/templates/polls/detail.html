@@ -7,7 +7,7 @@
     
     <fieldset>
       <legend>
-        <h1 class="text-2xl font-extrabold mb-6 text-gray-900 tracking-tight max-w-full break-words" style="word-break: break-all; white-space: normal;">
+        <h1 class="text-2xl font-extrabold mb-6 text-gray-900 tracking-tight break-words whitespace-normal max-w-full">
           {{ question.question_text }}
         </h1>
       </legend>
@@ -27,7 +27,7 @@
               class="w-5 h-5 text-blue-600 border-gray-300 focus:ring-2 focus:ring-blue-500"
               required
             >
-            <label for="choice{{ forloop.counter }}" class="ml-3 block text-lg font-medium text-gray-800 cursor-pointer select-none max-w-full break-words" style="word-break: break-all; white-space: normal;">
+            <label for="choice{{ forloop.counter }}" class="ml-3 block text-lg font-medium text-gray-800 cursor-pointer select-none break-words whitespace-normal max-w-full">
               {{ choice.choice_text }}
             </label>
           </div>
