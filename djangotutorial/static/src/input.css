@@ -1,0 +1,110 @@
+/* static/src/input.css */
+
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+
+/* styles.css */
+
+/* Définit une couleur de fond pour la page */
+body {
+  background-color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Style pour un titre principal */
+h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Style pour un paragraphe */
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Style pour un bouton */
+button {
+  background-color: #F5B100;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffc532;
+}
+
+.btn {
+  background-color: #00000000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #ffffff4d;
+}
+
+.btn.active {
+  background-color: #264F36;
+  color: rgb(255, 255, 255);
+}
+
+.btn_co {
+  background-color: #F5B100;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn_co:hover {
+  background-color: #ffc532;
+}
+
+.btn-delete {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-delete:hover {
+  background-color: #b91c1c;
+}
+
+
+/* Style d’une carte avec ombre */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+}

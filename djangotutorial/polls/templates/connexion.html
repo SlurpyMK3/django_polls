@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+
+{% block content %}
+<div class="w-full max-w-md mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow-lg mt-20">
+  <form class="space-y-6" method="post" action="{% url 'connexion' %}">
+    {% csrf_token %}
+    <h5 class="text-2xl font-semibold text-gray-900">Connectez-vous à la plateforme</h5>
+    {# Affiche les erreurs globales #}
+    {% if messages %}
+      {% for message in messages %}
+        <p class="text-sm text-red-600">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    <div>
+      <label for="username" class="block mb-2 text-base font-medium text-gray-900">Nom d'utilisateur</label>
+      <input type="text" name="username" id="username" class="w-full p-3 border border-gray-300 rounded-md " placeholder="" required />
+    </div>
+
+    <div>
+      <label for="password" class="block mb-2 text-base font-medium text-gray-900">Votre mot de passe</label>
+      <input type="password" name="password" id="password" placeholder="••••••••" class="w-full p-3 border border-gray-300 rounded-md" required />
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <input id="remember" type="checkbox" class="w-4 h-4 border-gray-300 rounded" />
+        <label for="remember" class="ml-2 text-sm font-medium text-gray-900">Se souvenir de moi</label>
+      </div>
+              {% for error in field.errors %}
+          <p class="text-sm text-red-600">{{ error }}</p>
+        {% endfor %}
+      <a href="#" class="text-sm text-blue-600 hover:underline">Mot de passe oublié ?</a>
+    </div>
+
+    <button type="submit" class="w-full px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700">
+      Connexion
+    </button>
+
+    <div class="text-sm font-medium text-gray-500 text-center">
+      Pas encore inscrit ? <a href="{% url 'inscription' %}" class="text-blue-600 hover:underline">Créer votre compte</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

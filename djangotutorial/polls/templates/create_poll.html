@@ -1,0 +1,59 @@
+{% extends "home.html" %}
+
+{% block content %}
+<div class="w-full max-w-md mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow-lg mt-20">
+  <form class="space-y-6" method="post" enctype="multipart/form-data"> <!-- enctype important -->
+    {% csrf_token %}
+    <h5 class="text-2xl font-semibold text-gray-900 text-center">Créer un nouveau sondage</h5>
+
+    {% if error_message %}
+      <p class="text-sm text-red-600 text-center">{{ error_message }}</p>
+    {% endif %}
+
+    <div>
+      <label for="question_text" class="block mb-2 text-base font-medium text-gray-900">Question du sondage</label>
+      <input type="text" name="question_text" id="question_text" class="w-full p-3 border border-gray-300 rounded-md" required />
+    </div>
+
+    <div>
+      <label for="pub_date" class="block mb-2 text-base font-medium text-gray-900">Date de publication</label>
+      <input type="datetime-local" name="pub_date" id="pub_date" class="w-full p-3 border border-gray-300 rounded-md" />
+    </div>
+
+    <div>
+      <label for="image" class="block mb-2 text-base font-medium text-gray-900">Image</label>
+      <input type="file" name="image" id="image" accept="image/*" class="w-full p-3 border border-gray-300 rounded-md file:bg-green-600 file:text-white file:font-medium file:px-4 file:py-2 file:rounded-md" required />
+    </div>
+
+    <!-- Nouveaux champs réponses -->
+<div id="choices-container">
+  <label class="block mb-2 text-base font-medium text-gray-900">Réponses possibles</label>
+  <input type="text" name="choice1" placeholder="Réponse 1" class="w-full p-3 mb-2 border border-gray-300 rounded-md" required oninput="checkAndAddChoice(this)" />
+  <input type="text" name="choice2" placeholder="Réponse 2" class="w-full p-3 mb-2 border border-gray-300 rounded-md" required oninput="checkAndAddChoice(this)" />
+  <input type="text" name="choice3" placeholder="Réponse 3" class="w-full p-3 border border-gray-300 rounded-md" oninput="checkAndAddChoice(this)" />
+</div>
+
+    <button type="submit" class="w-full px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700">
+      Publier le sondage
+    </button>
+    <script>
+  function checkAndAddChoice(input) {
+    const container = document.getElementById('choices-container');
+    const inputs = container.querySelectorAll('input[type="text"]');
+    const lastInput = inputs[inputs.length - 1];
+
+    if (input === lastInput && input.value.trim() !== '') {
+      const newIndex = inputs.length + 1;
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.name = 'choice' + newIndex;
+      newInput.placeholder = 'Réponse ' + newIndex;
+      newInput.className = 'w-full p-3 mb-2 border border-gray-300 rounded-md';
+      newInput.setAttribute('oninput', 'checkAndAddChoice(this)');
+      container.appendChild(newInput);
+    }
+  }
+</script>
+  </form>
+</div>
+{% endblock %}

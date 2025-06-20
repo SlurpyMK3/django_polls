@@ -1,0 +1,47 @@
+{% extends "home.html" %}
+{% block content %}
+
+<div class="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-8 mt-20">
+  <form action="{% url 'polls:vote' question.id %}" method="post" novalidate>
+    {% csrf_token %}
+    
+    <fieldset>
+      <legend>
+        <h1 class="text-2xl font-extrabold mb-6 text-gray-900 tracking-tight max-w-full break-words" style="word-break: break-all; white-space: normal;">
+          {{ question.question_text }}
+        </h1>
+      </legend>
+
+      {% if error_message %}
+        <p class="text-red-600 mb-6 font-semibold">{{ error_message }}</p>
+      {% endif %}
+
+      <div class="space-y-4">
+        {% for choice in question.choice_set.all %}
+          <div class="flex items-center">
+            <input
+              type="radio"
+              name="choice"
+              id="choice{{ forloop.counter }}"
+              value="{{ choice.id }}"
+              class="w-5 h-5 text-blue-600 border-gray-300 focus:ring-2 focus:ring-blue-500"
+              required
+            >
+            <label for="choice{{ forloop.counter }}" class="ml-3 block text-lg font-medium text-gray-800 cursor-pointer select-none max-w-full break-words" style="word-break: break-all; white-space: normal;">
+              {{ choice.choice_text }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <button
+      type="submit"
+      class="mt-8 w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-400 text-white font-semibold rounded-lg px-6 py-3 transition-shadow duration-300"
+    >
+      Voter
+    </button>
+  </form>
+</div>
+
+{% endblock %}

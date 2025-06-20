@@ -1,0 +1,21 @@
+# Environnements virtuels
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Fichiers DB SQLite
+db.sqlite3
+
+# Fichiers médias uploadés
+media/
+
+# Fichiers statiques compilés
+staticfiles/
+
+# IDE
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store

@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+{% block content %}
+    <div class="max-w-4xl mx-auto p-6 space-y-10 mt-10"></div>
+<div class="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
+  <h1 class="text-3xl font-bold mb-6 text-gray-800">{{ question.question_text }}</h1>
+
+  <ul class="space-y-4">
+    {% for choice in question.choice_set.all %}
+    <li class="flex items-center justify-between p-4 bg-gray-100 rounded-lg shadow-sm">
+      <span class="text-lg text-gray-700">{{ choice.choice_text }}</span>
+      <span class="text-sm font-semibold text-green-600">
+        {{ choice.votes }} vote{{ choice.votes|pluralize }}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="mt-8 text-center">
+    <a href="/resultat"
+       class="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition">
+      Voir tous les résultats des sondages
+    </a>
+  </div>
+</div>
+
+{% endblock %}

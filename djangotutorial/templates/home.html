@@ -1,0 +1,140 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sondage McDonald's</title>
+
+{% compress css %}
+<link href="{% static 'css/output.css' %}" rel="stylesheet" />
+{% endcompress %}
+
+
+</head>
+    <body class="bg-green-50">
+        
+        <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+
+        <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+        <a href="/" class="flex items-center gap-2 rtl:space-x-reverse">
+                <img src="{% static 'img/logo.svg' %}" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">McSond's</span>
+        </a>
+
+    <div class="flex md:order-2 gap-2 md:space-x-0 rtl:space-x-reverse">
+        {% if user.is_authenticated %}
+            <span class="mr-4 text-white font-medium">Bonjour {{ user.username }}</span>
+            <a href="{% url 'polls:deconnexion' %}" class="btn_co">Déconnexion</a>
+
+        {% else %}
+            <a href="{% url 'connexion' %}" class="btn_co">Connexion</a>
+        {% endif %}
+
+    </div>
+
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <ul class="flex flex-col p- md:p-0 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-6 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        
+    <li>
+    <a href="/"
+    class="btn {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+            Accueil
+         </a>
+    </li>
+
+    <li>
+        <a href="/sondage"
+    class="btn {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+            Sondage
+        </a>
+    </li>
+
+    <li>
+        <a href="/resultat"
+    class="btn {% if request.resolver_match.url_name == 'results_all' %}active{% endif %}">
+            Résultat
+        </a>
+    </li>
+
+    <li>
+        <a href="/contact"
+    class="btn {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+            Contact
+        </a>
+    </li>
+        </ul>
+    </div>
+    </div>
+    </nav>
+
+{% block content %}
+
+<div class="pt-28 pb-16 px-4 text-center">
+  {% if user.is_authenticated %}
+  <h1 class="text-4xl font-extrabold text-green-700 mb-4">Bienvenue {{ user.username }} 🍟</h1>
+  <p class="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
+    Merci de participer à nos sondages ! Vous pouvez voter ou voir les résultats.
+  </p>
+  <a href="{% url 'polls:index' %}"
+     class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition">
+    Aller aux sondages
+  </a>
+{% else %}
+  <h1 class="text-4xl font-extrabold text-green-700 mb-4">Bienvenue sur McSond's 🍔</h1>
+  <p class="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
+    Participez aux sondages sur vos produits McDonald's préférés et comparez vos goûts à ceux des autres !
+    </p>
+  <a href="{% url 'polls:index' %}"
+     class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition">
+    Participer aux sondages
+  </a>
+{% endif %}
+
+    <div class="max-w-4xl mx-auto p-3 space-y-10 mt-15"></div>
+  <!-- Cartes de fonctionnalités -->
+  <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Carte 1 -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+      <div class="flex justify-center mb-4">
+          <!-- vote -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+      </div>
+      <h3 class="text-xl font-semibold text-green-800 mb-2">Vote facile</h3>
+      <p class="text-gray-600">Donnez votre avis en quelques clics sur nos produits McDo !</p>
+    </div>
+
+    <!-- Carte 2 -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+      <div class="flex justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h10m-6 4h6m4-4v6a2 2 0 002 2h2" />
+</svg>
+
+      </div>
+      <h3 class="text-xl font-semibold text-green-800 mb-2">Résultats en temps réel</h3>
+      <p class="text-gray-600">Découvrez ce que les autres préfèrent immédiatement.</p>
+    </div>
+
+    <!-- Carte 3 -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+      <div class="flex justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3-.468L3 21l1.568-3.725A8.996 8.996 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+</svg>
+
+      </div>
+      <h3 class="text-xl font-semibold text-green-800 mb-2">Exprimez-vous</h3>
+      <p class="text-gray-600">Votre opinion compte, même sur la meilleure sauce du Big Mac !</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>

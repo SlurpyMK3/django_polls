@@ -1,0 +1,60 @@
+{% extends "home.html" %}
+{% load static %}
+{% block content %}
+
+<div class="px-70 pt-20 pb-16 text-center">
+  <h1 class="text-4xl font-extrabold text-green-700 mb-4">Répondez à nos sondages ! 🍔</h1>
+
+  {% if latest_question_list %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for question in latest_question_list %}
+
+        <div class="flex flex-col justify-between h-full bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 overflow-hidden transition hover:shadow-2xl">
+
+          <!-- Image -->
+          {% if question.image %}
+            <img class="w-full h-80 object-cover" src="{{ question.image.url }}" alt="Image sondage" />
+          {% else %}
+            <img class="w-full h-80 object-cover" src="{% static 'img/vote.svg' %}" alt="Image par défaut" />
+          {% endif %}
+
+          <!-- Contenu -->
+          <div class="flex flex-col justify-between p-5 flex-grow">
+            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 break-words">
+              {{ question.question_text }}
+            </h5>
+
+            <a href="{% url 'polls:detail' question.id %}"
+               class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 mb-4 break-words">
+              Répondre au sondage
+              <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd" />
+              </svg>
+            </a>
+
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'polls:delete_poll' question.id %}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sondage ?');">
+              {% csrf_token %}
+              <button type="submit" class="btn-delete">Supprimer</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-red-600 font-semibold mt-10 text-center">Aucun sondage disponible pour le moment.</p>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+    <div class="mt-8 text-center">
+      <a href="/create_poll" class="btn_co">
+        Créer un nouveau sondage
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

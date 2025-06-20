@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+{% block content %}
+
+
+<div class="w-full max-w-4xl h-auto min-h-[400px] mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow-lg mt-20">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-black">Contact</h2>
+      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Un souci technique ? Une idée pour améliorer le site ? Une question sur nos sondages ? Dites-nous tout. Nous sommes là pour vous écouter et faire évoluer l’expérience avec vous.</p>
+      <form action="#" class="space-y-8">
+    <div>
+      <label for="email" class="block mb-2 text-base font-medium text-gray-900">Votre mail</label>
+      <input type="email" name="email" id="email" placeholder="name@company.com" class="w-full p-3 border border-gray-300 rounded-md "  required />
+    </div>
+    <div>
+      <label for="object" class="block mb-2 text-base font-medium text-gray-900">Objet</label>
+      <input type="object" name="object" id="object" placeholder="Sujet du message" class="w-full p-3 border border-gray-300 rounded-md" required />
+    </div>
+          <div class="sm:col-span-2">
+      <label for="object" class="block mb-2 text-base font-medium text-gray-900">Votre message</label>
+              <textarea id="message" rows="2" placeholder="Laissez votre commentaire..." class="w-full p-3 border border-gray-300 rounded-md" required ></textarea> 
+          </div>
+          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Envoyer</button>
+      </form>
+  </div>
+</section>
+{% endblock %}
+
